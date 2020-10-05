@@ -207,7 +207,7 @@ browserify(options)
 
 ### output
 
-Type: `String`
+Type: `String | Function`
 Default: ''
 
 The output path of the CSS file. When using this option, browserify-css will not embed stylesheets into a JavaScript bundle.
@@ -215,6 +215,9 @@ The output path of the CSS file. When using this option, browserify-css will not
 ```bash
 browserify -t [ browserify-css --minify=true --output bundle.css ] -o bundle.js index.js
 ```
+
+Output may also be a function that returns a writable stream. The CSS will be pushed into this stream and not embeded into the
+JavaScript bundle. This is useful if you have a custom build process and want more control over the data.
 
 ### processRelativeUrl
 

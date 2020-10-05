@@ -48,6 +48,7 @@ module.exports = function(filename, opts) {
     }
 
     var buffer = '';
+    var outStream;
 
     options = _.merge({}, options, opts);
 
@@ -68,6 +69,8 @@ module.exports = function(filename, opts) {
             options.output = '';
             console.error(err);
         }
+    } else if (typeof options.output === 'function') {
+        outStream = options.output();
     }
 
     return through(
@@ -102,6 +105,11 @@ module.exports = function(filename, opts) {
                         }
 
                         done();
+                        return;
+                    } else if (typeof options.output === 'function') {
+                        outStream.push(data);
+                        done();
+
                         return;
                     }
 
