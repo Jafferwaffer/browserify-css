@@ -5,7 +5,7 @@
   "main": "./index.js",
   "browser": "./browser.js",
   "scripts": {
-    "prepublish": "npm run build && npm test",
+    "prePublishOnly": "npm run build && npm test",
     "build": "gulp",
     "test": "tap test/*.js",
     "coveralls": "tap test/*.js --coverage --coverage-report=text-lcov | coveralls"
